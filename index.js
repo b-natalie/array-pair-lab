@@ -32,21 +32,29 @@ const locateStudent = name => ourCohort.find(element => element === name);
 
 const phaseNames = () => coursePhases.map(phase => phase.name);
 
-const cohortPhases = () => coursePhases.filter(phase => phase.language === "JavaScript");
+// const cohortPhases = () => coursePhases.filter(phase => phase.language === "JavaScript");
+
+const cohortPhases = () => coursePhases.filter(phase => phase.language.includes("JavaScript"));
 
 // function allTheGabes() {
 //     return ourCohort.filter(name => name.slice(0, "Gabriel".length) === "Gabriel");
 // }
 
-const allTheGabes = () => ourCohort.filter(name => name.slice(0, "Gabriel".length) === "Gabriel");
+const allTheGabes = () => ourCohort.filter(name => name.split(" ").find(word => word.includes("Gabriel")));
+
+// const allTheGabes = () => ourCohort.filter(name => name.slice(0, "Gabriel".length) === "Gabriel");
+
+// const allTheGabes = () => ourCohort.filter(name => name.includes("Gabriel"));
 
 const studentAndPhase = () => ourCohort.map(name => `${name} is currently in Phase 1!`);
 
 const sortPhasesByName = () => coursePhases.sort(function (a, b) {
     if (a.name < b.name) {
         return -1;
-    } else {
+    } else if (a.name > b.name) {
         return 1;
+    } else {
+        return 0;
     }
   });
 
